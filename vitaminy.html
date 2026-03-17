@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitamíny &amp; minerály | Wellcode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">Well<span>code</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="cyklus.html">Cyklus</a></li>
+            <li><a href="rano.html">Ranní rituál</a></li>
+            <li><a href="vitaminy.html" class="active">Vitamíny</a></li>
+            <li><a href="zklidneni.html">Zklidnění</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <span class="section-icon">&#128138;</span>
+    <h1>Vitamíny &amp; minerály</h1>
+    <p>Stavební kameny ženského zdraví. Někdy ani ta nejlepší strava nepokryje vše, co moderní žena potřebuje.</p>
+</header>
+
+<section class="content-section">
+    <div class="container">
+        <div class="vitamins-grid">
+            <div class="vitamin-card fade-in">
+                <div class="vitamin-icon">&#10024;</div>
+                <h3>Hořčík (Magnesium)</h3>
+                <p class="vitamin-benefit">Král ženského wellness</p>
+                <p>Pomáhá snižovat stres, zlepšuje spánek, zmírňuje PMS a menstruační křeče. Hledej formy jako bisglycinát pro zklidnění nebo malát pro energii.</p>
+                <div class="sources">Dýňová semínka &bull; špenát &bull; hořká čokoláda &bull; kvalitní doplňky stravy</div>
+            </div>
+
+            <div class="vitamin-card fade-in">
+                <div class="vitamin-icon">&#9889;</div>
+                <h3>B-komplex</h3>
+                <p class="vitamin-benefit">Energie a nervová soustava</p>
+                <p>Esenciální pro naši energii, nervovou soustavu a metabolismus estrogenu. Základ hormonální rovnováhy.</p>
+                <div class="sources">Vejce &bull; luštěniny &bull; celozrnné obiloviny &bull; tmavá listová zelenina</div>
+            </div>
+
+            <div class="vitamin-card fade-in">
+                <div class="vitamin-icon">&#128167;</div>
+                <h3>Omega-3 mastné kyseliny</h3>
+                <p class="vitamin-benefit">Nejlepší bojovník proti zánětu</p>
+                <p>Zmírňuje bolesti při menstruaci a podporuje zdraví pleti i mozku. Nejlepší protizánětlivý pomocník v těle.</p>
+                <div class="sources">Losos &bull; sardinky &bull; lněná semínka &bull; chia semínka</div>
+            </div>
+
+            <div class="vitamin-card fade-in">
+                <div class="vitamin-icon">&#127793;</div>
+                <h3>Zinek</h3>
+                <p class="vitamin-benefit">Imunita a krásná pleť</p>
+                <p>Důležitý pro imunitu, zdravou pleť (bojuje proti hormonálnímu akné) a kvalitu našich vajíček.</p>
+                <div class="sources">Hovězí maso &bull; ústřice &bull; dýňová semínka</div>
+            </div>
+        </div>
+
+        <div class="supplement-note fade-in">
+            <span class="note-label">Pamatuj</span>
+            <p>Suplementy by měly vždy jen &bdquo;doplňovat&ldquo; to, co už máme nastavené v našem životním stylu a stravě. Nejdříve základ, pak doplňky.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p class="footer-quote">&bdquo;Tvé tělo je tvůj celoživotní domov.&ldquo;</p>
+    <p class="footer-brand">Wellcode</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

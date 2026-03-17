@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zklidnění nervového systému | Wellcode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">Well<span>code</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="cyklus.html">Cyklus</a></li>
+            <li><a href="rano.html">Ranní rituál</a></li>
+            <li><a href="vitaminy.html">Vitamíny</a></li>
+            <li><a href="zklidneni.html" class="active">Zklidnění</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <span class="section-icon">&#127748;</span>
+    <h1>Zklidnění nervového systému</h1>
+    <p>Můžeš jíst nejdokonalejší stravu a cvičit přesně podle cyklu, ale pokud je tvůj nervový systém v neustálém režimu &bdquo;bojuj, nebo uteč&ldquo;, tvé tělo pozastaví optimální produkci hormonů.</p>
+</header>
+
+<section class="content-section">
+    <div class="container">
+        <div class="techniques">
+            <div class="technique-card fade-in">
+                <div class="technique-icon">&#128172;</div>
+                <div class="technique-content">
+                    <h3>Fyziologický vzdech (Physiological Sigh)</h3>
+                    <p>Vědecky ověřená technika, která dokáže zklidnit nervový systém během pár sekund. Můžeš ji použít kdykoliv cítíš napětí &mdash; v práci, v dopravě, před spaním.</p>
+                    <div class="how-to">Dvakrát se rychle nadechni nosem (první nádech delší, druhý krátký na doraz) a dlouze vydechni ústy. Zopakuj 3&times; až 5&times;, kdykoliv cítíš napětí.</div>
+                </div>
+            </div>
+
+            <div class="technique-card fade-in">
+                <div class="technique-icon">&#9632;</div>
+                <div class="technique-content">
+                    <h3>Krabicové dýchání (Box Breathing)</h3>
+                    <p>Ideální pro soustředění a uzemnění. Technika používaná i speciálními jednotkami pro zachování klidu v extrémních situacích.</p>
+                    <div class="how-to">Nadechni se na 4 doby &rarr; zadrž dech na 4 doby &rarr; vydechni na 4 doby &rarr; zadrž dech na 4 doby. Opakuj několik kol.</div>
+                </div>
+            </div>
+
+            <div class="technique-card fade-in">
+                <div class="technique-icon">&#128155;</div>
+                <div class="technique-content">
+                    <h3>Ochrana hranic a slovo &bdquo;NE&ldquo;</h3>
+                    <p>Nejlepší biohack pro nervový systém? Naučit se chránit svou energii. Ne každá zpráva vyžaduje okamžitou odpověď a ne na každou žádost musíš říct ano. Tvůj nervový systém ti za zdravé hranice poděkuje.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box fade-in" style="margin-top: 3rem;">
+            <span class="tip-label">Proč je to důležité?</span>
+            <p>Pro tělo není bezpečné se v době &bdquo;ohrožení&ldquo; rozmnožovat nebo budovat zdraví. Chronický stres = pozastavené hormony. Zklidnění nervového systému je proto základ všeho ostatního.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p class="footer-quote">&bdquo;Tvé tělo je tvůj celoživotní domov.&ldquo;</p>
+    <p class="footer-brand">Wellcode</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

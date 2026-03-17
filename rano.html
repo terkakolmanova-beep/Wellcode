@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranní biohacking | Wellcode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">Well<span>code</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="cyklus.html">Cyklus</a></li>
+            <li><a href="rano.html" class="active">Ranní rituál</a></li>
+            <li><a href="vitaminy.html">Vitamíny</a></li>
+            <li><a href="zklidneni.html">Zklidnění</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <span class="section-icon">&#9728;&#65039;</span>
+    <h1>Ranní biohacking</h1>
+    <p>To, jak začneš své ráno, určuje, jak se bude cítit tvůj nervový systém po zbytek dne. Místo okamžitého scrollování a litru kávy nalačno zkus tyto tři kroky.</p>
+</header>
+
+<section class="content-section">
+    <div class="container">
+        <div class="routine-steps">
+            <div class="routine-step fade-in">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Světlo do očí (Cirkadiánní rytmus)</h3>
+                    <p>První, co tvé tělo potřebuje, je signál, že je den. Ideálně do 30 minut po probuzení se vystav přirozenému dennímu světlu. Zastaví to tvorbu melatoninu (hormonu spánku) a spustí zdravou dávku kortizolu, která tě přirozeně probudí. Stačí pár minut na balkóně, u otevřeného okna nebo na krátké procházce.</p>
+                </div>
+            </div>
+
+            <div class="routine-step fade-in">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Minerální hydratace</h3>
+                    <p>Po noci jsme dehydrované. Místo čisté vody si dej sklenici vlažné vody se špetkou kvalitní mořské nebo himálajské soli a citronem. Dodáš buňkám elektrolyty a nastartuješ trávení &mdash; mnohem lépe než káva nalačno.</p>
+                </div>
+            </div>
+
+            <div class="routine-step fade-in">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Probouzecí pohyby pro nervový systém</h3>
+                    <p>Než začneš cvičit nebo pracovat, jemně probuď svůj nervový systém. Skvělé je <strong>somatické třesení</strong> &mdash; stoupni si a minutu jemně setřásej napětí z rukou, nohou a celého těla (zvířata to dělají po stresu přirozeně!). Nebo zkus jemné kroužení pánví a páteří pro aktivaci bloudivého nervu (vagus nerve).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box fade-in" style="margin-top: 3rem;">
+            <span class="tip-label">Proč to funguje?</span>
+            <p>Tyto tři kroky nastaví tvůj cirkadiánní rytmus, hydratují buňky a přepnou nervový systém z režimu spánku do klidné bdělosti &mdash; bez stresu a umělých stimulantů.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p class="footer-quote">&bdquo;Tvé tělo je tvůj celoživotní domov.&ldquo;</p>
+    <p class="footer-brand">Wellcode</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

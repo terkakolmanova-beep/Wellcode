@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcode | Ženský Biohacking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---- LANDING HERO ---- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(160deg, var(--warm-white) 0%, var(--blush) 50%, var(--soft-sage) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.2) 0%, transparent 70%);
+            top: -100px;
+            right: -150px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(197, 213, 203, 0.3) 0%, transparent 70%);
+            bottom: -50px;
+            left: -100px;
+        }
+
+        .hero-content {
+            max-width: 750px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--deep-rose);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--plum);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--deep-rose);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--plum);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: var(--deep-rose);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 76, 90, 0.2);
+        }
+
+        /* ---- INTRO SECTION ---- */
+        .intro-section {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .intro-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--plum);
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+        }
+
+        .intro-text p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .intro-stat {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            border: 1px solid rgba(212, 165, 165, 0.1);
+        }
+
+        .intro-stat .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--plum);
+            font-weight: 700;
+        }
+
+        .intro-stat .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.2rem;
+        }
+
+        /* ---- PILLARS ---- */
+        .pillars-section {
+            padding: 6rem 2rem;
+            background: var(--warm-white);
+        }
+
+        .pillars-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .pillars-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--plum);
+            margin-bottom: 1rem;
+        }
+
+        .pillars-header p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* ---- TOPICS GRID ---- */
+        .topics-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(212, 165, 165, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transition: height 0.4s;
+        }
+
+        .topic-card:nth-child(1)::before { background: linear-gradient(90deg, #B8C9D9, #B8D9C5); }
+        .topic-card:nth-child(2)::before { background: linear-gradient(90deg, var(--blush), var(--gold)); }
+        .topic-card:nth-child(3)::before { background: linear-gradient(90deg, var(--soft-sage), var(--sage)); }
+        .topic-card:nth-child(4)::before { background: linear-gradient(90deg, var(--rose), var(--blush)); }
+
+        .topic-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 60px rgba(107, 76, 90, 0.1);
+        }
+
+        .topic-card:hover::before {
+            height: 6px;
+        }
+
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .topic-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--plum);
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-card p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-link {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--deep-rose);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .topic-card:hover .topic-link {
+            color: var(--plum);
+        }
+
+        /* ---- PHILOSOPHY ---- */
+        .philosophy-section {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .philosophy-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .philosophy-content blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: var(--plum);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .philosophy-content blockquote::before {
+            content: '\201E';
+            font-size: 4rem;
+            color: var(--rose);
+            position: absolute;
+            top: -1.5rem;
+            left: -0.5rem;
+            opacity: 0.5;
+        }
+
+        .philosophy-content p {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="index.html" class="logo">Well<span>code</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="cyklus.html">Cyklus</a></li>
+            <li><a href="rano.html">Ranní rituál</a></li>
+            <li><a href="vitaminy.html">Vitamíny</a></li>
+            <li><a href="zklidneni.html">Zklidnění</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content fade-in">
+        <span class="hero-badge">Ženský biohacking</span>
+        <h1>Cesta k energii, rovnováze a <em>porozumění vlastnímu tělu</em></h1>
+        <p>Kde se věda potkává s ženskou intuicí. Žádné extrémní diety ani složité přístroje &mdash; jen laskavý přístup s respektem k tomu, co tvé tělo skutečně potřebuje.</p>
+        <a href="#temata" class="hero-cta">Objevit více</a>
+    </div>
+</header>
+
+<!-- INTRO -->
+<section class="intro-section">
+    <div class="intro-grid">
+        <div class="intro-text fade-in">
+            <h2>Co je ženský biohacking?</h2>
+            <p>Možná už jsi slyšela slovo &bdquo;biohacking&ldquo; a představila si složité přístroje nebo extrémní diety. My na to ale půjdeme jinak &mdash; žensky, laskavě a s respektem k našemu tělu.</p>
+            <p>Naším cílem není tělo &bdquo;opravit&ldquo; nebo ho donutit k nadlidským výkonům. Naším cílem je pochopit, jak funguje, a dát mu přesně to, co v danou chvíli potřebuje.</p>
+            <p>Od cyklického stravování přes ranní rituály až po zklidnění nervového systému &mdash; vše vychází z porozumění ženské fyziologii a jejím přirozeným rytmům.</p>
+        </div>
+        <div class="intro-visual fade-in">
+            <div class="intro-stat">
+                <div class="stat-number">4 fáze</div>
+                <div class="stat-label">Ženský cyklus jako kompas pro jídlo, pohyb i odpočinek</div>
+            </div>
+            <div class="intro-stat">
+                <div class="stat-number">3 kroky</div>
+                <div class="stat-label">Jednoduchý ranní rituál pro nastartování celého dne</div>
+            </div>
+            <div class="intro-stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Zaměřeno na vědu a ženskou fyziologii</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PILLARS / TOPICS -->
+<section class="pillars-section" id="temata">
+    <div class="pillars-header fade-in">
+        <h2>Prozkoumej témata</h2>
+        <p>Každá oblast ženského biohackingu ti pomůže lépe pochopit a podpořit své tělo v tom, co právě potřebuje.</p>
+    </div>
+
+    <div class="topics-grid">
+        <a href="cyklus.html" class="topic-card fade-in">
+            <span class="topic-icon">&#127769;</span>
+            <h3>Cycle Syncing</h3>
+            <p>Přizpůsob svůj pohyb, jídlo a práci fázi cyklu, ve které se právě nacházíš. Tvé tělo ti za to poděkuje.</p>
+            <span class="topic-link">Zjistit více &rarr;</span>
+        </a>
+
+        <a href="rano.html" class="topic-card fade-in">
+            <span class="topic-icon">&#9728;&#65039;</span>
+            <h3>Ranní biohacking</h3>
+            <p>Jak začneš ráno určuje celý den. Tři jednoduché kroky pro probuzení nervového systému laskavě a vědomě.</p>
+            <span class="topic-link">Zjistit více &rarr;</span>
+        </a>
+
+        <a href="vitaminy.html" class="topic-card fade-in">
+            <span class="topic-icon">&#128138;</span>
+            <h3>Vitamíny &amp; minerály</h3>
+            <p>Stavební kameny ženského zdraví. Zjisti, které vitamíny a minerály jsou pro tvé hormony naprosto klíčové.</p>
+            <span class="topic-link">Zjistit více &rarr;</span>
+        </a>
+
+        <a href="zklidneni.html" class="topic-card fade-in">
+            <span class="topic-icon">&#127748;</span>
+            <h3>Zklidnění</h3>
+            <p>Nauč se pracovat se stresem a poslat tělu signál bezpečí. Dechové techniky a ochrana hranic.</p>
+            <span class="topic-link">Zjistit více &rarr;</span>
+        </a>
+    </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+    <div class="philosophy-content fade-in">
+        <blockquote>Tvé tělo je tvůj celoživotní domov. Věnuj mu pozornost, naslouchej jeho jemným signálům a dovol si zpomalit, když to potřebuješ.</blockquote>
+        <p>Protože opravdové wellness nezačíná dokonalým plánem, ale láskou k sobě samé.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p class="footer-brand">Wellcode</p>
+</footer>
+
+<script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
