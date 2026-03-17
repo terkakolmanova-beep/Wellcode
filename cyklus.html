@@ -8,6 +8,189 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .phase-section {
+            padding: 5rem 2rem;
+        }
+
+        .phase-section:nth-child(odd) {
+            background: var(--cream);
+        }
+
+        .phase-section:nth-child(even) {
+            background: var(--warm-white);
+        }
+
+        .phase-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .phase-header-icon {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .phase-header-icon.winter { background: rgba(184, 201, 217, 0.3); }
+        .phase-header-icon.spring { background: rgba(184, 217, 197, 0.3); }
+        .phase-header-icon.summer { background: rgba(217, 201, 165, 0.3); }
+        .phase-header-icon.autumn { background: rgba(217, 184, 165, 0.3); }
+
+        .phase-header-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--plum);
+            margin-bottom: 0.3rem;
+        }
+
+        .phase-header-text .phase-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .phase-header-text .phase-meta span {
+            font-size: 0.85rem;
+            color: var(--rose);
+            font-style: italic;
+        }
+
+        .phase-body-text {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 750px;
+        }
+
+        .phase-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .phase-block {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            border: 1px solid rgba(212, 165, 165, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .phase-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 76, 90, 0.06);
+        }
+
+        .phase-block-icon {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .phase-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--plum);
+            margin-bottom: 0.8rem;
+        }
+
+        .phase-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .phase-block ul li {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .phase-block ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--rose);
+        }
+
+        .phase-block p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .phase-avoid {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed rgba(212, 165, 165, 0.2);
+            font-size: 0.82rem;
+            color: var(--deep-rose);
+            font-style: italic;
+        }
+
+        .intensity-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .intensity-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--blush);
+        }
+
+        .intensity-dot.active {
+            background: var(--plum);
+        }
+
+        .intensity-label {
+            font-size: 0.78rem;
+            color: var(--deep-rose);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .phase-blocks {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .phase-header-text .phase-meta {
+                justify-content: center;
+            }
+
+            .phase-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -29,88 +212,257 @@
 <header class="page-hero">
     <span class="section-icon">&#127769;</span>
     <h1>Cycle Syncing</h1>
-    <p>Život v souladu s tvým cyklem. Jsme cyklické bytosti &mdash; naše hormony během měsíce tančí a s nimi se mění i naše energie, nálada a potřeby.</p>
+    <p>Jsme cyklické bytosti. Naše hormony během měsíce tančí a s nimi se mění i naše energie, nálada a potřeby. Přizpůsob svůj pohyb, jídlo a práci fázi, ve které se právě nacházíš.</p>
 </header>
 
-<section class="content-section">
-    <div class="container">
-        <div class="phases-grid">
-            <div class="phase-card winter fade-in">
-                <span class="phase-emoji">&#10052;&#65039;</span>
-                <h3>Menstruační fáze</h3>
-                <p class="phase-subtitle">Tvoje vnitřní Zima &mdash; období uvolnění, reflexe a zpomalení</p>
-                <div class="phase-detail">
-                    <strong>Energie</strong>
-                    <p>Nejnižší. Tělo potřebuje klid na obnovu.</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Jídlo</strong>
-                    <p>Teplá, uzemňující a vyživující jídla. Vývary, polévky, kořenová zelenina, potraviny bohaté na železo a zinek (červené maso, čočka, dýňová semínka).</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Cvičení</strong>
-                    <p>Žádný extrém. Zařaď jemnou jógu, protahování, pomalé procházky nebo prostě jen odpočívej.</p>
-                </div>
-            </div>
-
-            <div class="phase-card spring fade-in">
-                <span class="phase-emoji">&#127800;</span>
-                <h3>Folikulární fáze</h3>
-                <p class="phase-subtitle">Tvoje vnitřní Jaro &mdash; období nových začátků, kreativity a plánování</p>
-                <div class="phase-detail">
-                    <strong>Energie</strong>
-                    <p>Začíná stoupat, cítíš se svěže a motivovaně.</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Jídlo</strong>
-                    <p>Lehká a svěží strava. Čerstvé saláty, fermentované potraviny (kimchi, kysané zelí), ovesné vločky, brokolice a lehké bílkoviny pro podporu růstu energie.</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Cvičení</strong>
-                    <p>Tělo snese víc! Skvělé období na kardio, běh, tanec, lehčí silový trénink nebo svižnou vinyasa jógu.</p>
-                </div>
-            </div>
-
-            <div class="phase-card summer fade-in">
-                <span class="phase-emoji">&#9728;&#65039;</span>
-                <h3>Ovulační fáze</h3>
-                <p class="phase-subtitle">Tvoje vnitřní Léto &mdash; období komunikace, magnetismu a plné síly</p>
-                <div class="phase-detail">
-                    <strong>Energie</strong>
-                    <p>Na vrcholu. Jsi společenská, záříš a cítíš se silná.</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Jídlo</strong>
-                    <p>Potraviny podporující detoxikaci jater (aby se tělo zbavilo přebytečného estrogenu). Quinoa, bobulovité ovoce, spousta listové zeleniny, smoothies a raw strava.</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Cvičení</strong>
-                    <p>Teď je čas na osobní rekordy. HIIT tréninky, těžší silový trénink, spin lekce nebo intenzivní běh.</p>
-                </div>
-            </div>
-
-            <div class="phase-card autumn fade-in">
-                <span class="phase-emoji">&#127810;</span>
-                <h3>Luteální fáze</h3>
-                <p class="phase-subtitle">Tvůj vnitřní Podzim &mdash; období dokončování úkolů, přípravy a hnízdění</p>
-                <div class="phase-detail">
-                    <strong>Energie</strong>
-                    <p>V první polovině ještě stabilní, ve druhé začíná klesat (čas na PMS prevenci).</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Jídlo</strong>
-                    <p>Komplexní sacharidy pro udržení stabilního krevního cukru a nálady. Pečené batáty, dýně, hnědá rýže, cizrna, vlašské ořechy a potraviny bohaté na hořčík (hořká čokoláda!).</p>
-                </div>
-                <div class="phase-detail">
-                    <strong>Cvičení</strong>
-                    <p>V první půlce si dej silový trénink nebo pilates. S blížící se menstruací plynule přejdi k pomalejší józe a dlouhým procházkám.</p>
+<!-- 1. MENSTRUAČNÍ FÁZE -->
+<section class="phase-section">
+    <div class="phase-container">
+        <div class="phase-header fade-in">
+            <div class="phase-header-icon winter">&#10052;&#65039;</div>
+            <div class="phase-header-text">
+                <h2>Menstruační fáze</h2>
+                <div class="phase-meta">
+                    <span>Vědma / Zima</span>
+                    <span>Den 1&ndash;6</span>
                 </div>
             </div>
         </div>
 
+        <p class="phase-body-text fade-in">Hladiny progesteronu a estrogenu klesají na nejnižší bod. Děložní sliznice se odlučuje a začíná menstruace. Energie a fyzická imunita jsou na minimu, ale mozkové hemisféry spolu intenzivněji komunikují, což posiluje intuici a schopnost analýzy.</p>
+
+        <div class="phase-blocks">
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#9989;</span>
+                <h3>Nejlepší aktivity</h3>
+                <ul>
+                    <li>Odpočinek a reflexe &mdash; vyhodnoťte uplynulý měsíc</li>
+                    <li>Journaling &mdash; zapisujte si vhledy, cíle a vize</li>
+                    <li>Nenáročné úkoly &mdash; e-maily, administrativa</li>
+                    <li>Samota &mdash; upřednostněte čas pro sebe a kvalitní spánek</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129367;</span>
+                <h3>Výživa</h3>
+                <ul>
+                    <li>Zaměřte se na železo a zinek</li>
+                    <li>Polévky, dušená jídla, vývary</li>
+                    <li>Červené maso, fazole, čočka, mořské řasy</li>
+                    <li>Kořenová zelenina (řepa, mrkev)</li>
+                </ul>
+                <p class="phase-avoid">Vyhněte se: alkoholu, nadmíře kofeinu a syrovým/studeným potravinám</p>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129495;&#8205;&#9792;&#65039;</span>
+                <h3>Cvičení</h3>
+                <div class="intensity-bar">
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot"></div>
+                    <div class="intensity-dot"></div>
+                    <div class="intensity-dot"></div>
+                    <span class="intensity-label">Velmi nízká</span>
+                </div>
+                <ul>
+                    <li>Dny volna</li>
+                    <li>Jin jóga, jemný strečink</li>
+                    <li>Pomalé procházky v přírodě</li>
+                    <li>Meditace a dechová cvičení (Pránájáma)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. FOLIKULÁRNÍ FÁZE -->
+<section class="phase-section">
+    <div class="phase-container">
+        <div class="phase-header fade-in">
+            <div class="phase-header-icon spring">&#127800;</div>
+            <div class="phase-header-text">
+                <h2>Folikulární fáze</h2>
+                <div class="phase-meta">
+                    <span>Panna / Jaro</span>
+                    <span>Den 7&ndash;13</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="phase-body-text fade-in">Stoupá FSH (folikulostimulační hormon), který stimuluje růst vajíček. Hladina estrogenu začíná výrazně stoupat. Zvyšuje se energie, mizí &bdquo;mozková mlha&ldquo; a brousí se kognitivní schopnosti &mdash; učení, paměť. Metabolismus je mírně pomalejší, což znamená, že tělo efektivněji využívá palivo.</p>
+
+        <div class="phase-blocks">
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#9989;</span>
+                <h3>Nejlepší aktivity</h3>
+                <ul>
+                    <li>Brainstorming a plánování &mdash; ideální čas pro strategii</li>
+                    <li>Nové začátky &mdash; zaveďte návyky, spouštějte projekty</li>
+                    <li>Učení &mdash; mozek je připraven absorbovat nové informace</li>
+                    <li>Socializace &mdash; cítíte se extrovertněji a otevřeněji</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129367;</span>
+                <h3>Výživa</h3>
+                <ul>
+                    <li>Čerstvé a lehké potraviny</li>
+                    <li>Fermentované potraviny (kimči, kysané zelí)</li>
+                    <li>Libové proteiny (kuřecí, vejce, tofu)</li>
+                    <li>Semínka (lněná a dýňová &mdash; Seed Cycling)</li>
+                    <li>Čerstvé saláty a avokádo</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129495;&#8205;&#9792;&#65039;</span>
+                <h3>Cvičení</h3>
+                <div class="intensity-bar">
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot"></div>
+                    <span class="intensity-label">Střední až vysoká</span>
+                </div>
+                <ul>
+                    <li>Kardio, běh, turistika</li>
+                    <li>Nové fitness lekce</li>
+                    <li>Kruhový trénink</li>
+                    <li>Tělo je odolné a rychle se regeneruje</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. OVULAČNÍ FÁZE -->
+<section class="phase-section">
+    <div class="phase-container">
+        <div class="phase-header fade-in">
+            <div class="phase-header-icon summer">&#9728;&#65039;</div>
+            <div class="phase-header-text">
+                <h2>Ovulační fáze</h2>
+                <div class="phase-meta">
+                    <span>Matka / Léto</span>
+                    <span>Den 14&ndash;17</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="phase-body-text fade-in">Estrogen vrcholí a prudce stoupá luteinizační hormon (LH), který spouští uvolnění vajíčka. Mírně stoupá i testosteron, což zvyšuje libido a sebevědomí. Verbální centra v mozku jsou nejaktivnější &mdash; působíte magneticky, přesvědčivě a energicky.</p>
+
+        <div class="phase-blocks">
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#9989;</span>
+                <h3>Nejlepší aktivity</h3>
+                <ul>
+                    <li>Komunikace &mdash; prezentace, žádost o zvýšení platu</li>
+                    <li>Spolupráce &mdash; týmová práce, networking, akce</li>
+                    <li>Vyjednávání &mdash; přirozeně cítíte větší empatii a jste přesvědčivější</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129367;</span>
+                <h3>Výživa</h3>
+                <ul>
+                    <li>Podpořte játra při zpracování estrogenu</li>
+                    <li>Brukvovitá zelenina (brokolice, květák, kapusta)</li>
+                    <li>Protizánětlivé potraviny (bobuloviny, kurkuma)</li>
+                    <li>Lehčí jídla (quinoa, smoothies)</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129495;&#8205;&#9792;&#65039;</span>
+                <h3>Cvičení</h3>
+                <div class="intensity-bar">
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <span class="intensity-label">Maximální</span>
+                </div>
+                <ul>
+                    <li>HIIT tréninky</li>
+                    <li>Silový trénink s těžkými váhami</li>
+                    <li>Spinning, skupinové sporty</li>
+                    <li>Soutěživé aktivity &mdash; síla je na vrcholu!</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. LUTEÁLNÍ FÁZE -->
+<section class="phase-section">
+    <div class="phase-container">
+        <div class="phase-header fade-in">
+            <div class="phase-header-icon autumn">&#127810;</div>
+            <div class="phase-header-text">
+                <h2>Luteální fáze</h2>
+                <div class="phase-meta">
+                    <span>Kouzelnice / Podzim</span>
+                    <span>Den 18&ndash;28</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="phase-body-text fade-in">Stoupá progesteron (podporuje klid, ale může způsobovat zadržování vody), poté klesá, pokud nedojde k otěhotnění. Metabolismus se zrychluje &mdash; můžete pociťovat větší hlad. Energie se obrací dovnitř. V pozdní fázi se může objevit PMS. Zvyšuje se smysl pro detail, ale klesá tolerance ke stresu.</p>
+
+        <div class="phase-blocks">
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#9989;</span>
+                <h3>Nejlepší aktivity</h3>
+                <ul>
+                    <li>Hluboká práce (Deep Work) &mdash; úkoly vyžadující preciznost</li>
+                    <li>Dokončování &mdash; uzavřete rozdělané projekty</li>
+                    <li>Úklid &mdash; fyzický i digitální prostor</li>
+                    <li>Editace &mdash; využijte kritické oko k revizi práce</li>
+                </ul>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129367;</span>
+                <h3>Výživa</h3>
+                <ul>
+                    <li>Stabilizujte hladinu cukru v krvi</li>
+                    <li>Komplexní sacharidy (batáty, hnědá rýže, oves)</li>
+                    <li>Potraviny bohaté na hořčík (hořká čokoláda, špenát)</li>
+                    <li>Vitamín B6 (banány, losos, krůtí maso)</li>
+                    <li>Semínka (slunečnicová a sezamová)</li>
+                </ul>
+                <p class="phase-avoid">Vyhněte se: nadbytku cukru a soli (zhoršují nadýmání)</p>
+            </div>
+
+            <div class="phase-block fade-in">
+                <span class="phase-block-icon">&#129495;&#8205;&#9792;&#65039;</span>
+                <h3>Cvičení</h3>
+                <div class="intensity-bar">
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot active"></div>
+                    <div class="intensity-dot"></div>
+                    <div class="intensity-dot"></div>
+                    <span class="intensity-label">Střední až nízká</span>
+                </div>
+                <ul>
+                    <li>Raná fáze: silový trénink, mírné kardio</li>
+                    <li>Pozdní fáze: pilates, jóga, strečink</li>
+                    <li>Vyhněte se skákání a extrémně intenzivnímu kardiu</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TIP -->
+<section class="content-section alt">
+    <div class="container">
         <div class="tip-box fade-in">
             <span class="tip-label">Biohacking Tip</span>
-            <p>Netlač na sebe. Pokud jsi v ovulaci, ale cítíš únavu, poslouchej své tělo. Cycle syncing je mapa, nikoliv vězení.</p>
+            <p>Netlač na sebe. Pokud jsi v ovulaci, ale cítíš únavu, poslouchej své tělo. Cycle syncing je mapa, nikoliv vězení. Každá žena je jiná a tvůj cyklus se může lišit &mdash; sleduj, co funguje právě tobě.</p>
         </div>
     </div>
 </section>
