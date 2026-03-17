@@ -8,6 +8,299 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---- NUTRIENT DETAIL CARDS ---- */
+        .nutrient-section {
+            padding: 4rem 2rem;
+        }
+
+        .nutrient-section:nth-child(odd) {
+            background: var(--cream);
+        }
+
+        .nutrient-section:nth-child(even) {
+            background: var(--warm-white);
+        }
+
+        .nutrient-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nutrient-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nutrient-header-icon {
+            flex-shrink: 0;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .nutrient-header-icon.mag { background: rgba(197, 213, 203, 0.4); }
+        .nutrient-header-icon.d3 { background: rgba(201, 169, 110, 0.25); }
+        .nutrient-header-icon.zinc { background: rgba(212, 165, 165, 0.3); }
+        .nutrient-header-icon.iron { background: rgba(155, 107, 107, 0.15); }
+        .nutrient-header-icon.b6 { background: rgba(242, 215, 213, 0.5); }
+        .nutrient-header-icon.omega { background: rgba(184, 201, 217, 0.4); }
+
+        .nutrient-header-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+            color: var(--plum);
+            margin-bottom: 0.2rem;
+        }
+
+        .nutrient-header-text .nutrient-subtitle {
+            font-size: 0.88rem;
+            color: var(--rose);
+            font-style: italic;
+        }
+
+        .nutrient-body {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 780px;
+        }
+
+        .nutrient-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .nutrient-info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            border: 1px solid rgba(212, 165, 165, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .nutrient-info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(107, 76, 90, 0.06);
+        }
+
+        .nutrient-info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--plum);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nutrient-info-card h3 span {
+            font-size: 1.2rem;
+        }
+
+        .nutrient-info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nutrient-info-card ul li {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .nutrient-info-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--rose);
+        }
+
+        .nutrient-info-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .biohack-tip {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            background: linear-gradient(135deg, rgba(242, 215, 213, 0.2), rgba(197, 213, 203, 0.2));
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--deep-rose);
+            font-style: italic;
+        }
+
+        .biohack-tip strong {
+            font-style: normal;
+            color: var(--plum);
+        }
+
+        /* ---- RDA CHART ---- */
+        .rda-section {
+            padding: 5rem 2rem;
+            background: var(--cream);
+        }
+
+        .rda-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .rda-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .rda-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--plum);
+            margin-bottom: 0.8rem;
+        }
+
+        .rda-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .rda-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .rda-item {
+            display: grid;
+            grid-template-columns: 160px 1fr 100px;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .rda-label {
+            text-align: right;
+        }
+
+        .rda-label .rda-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--plum);
+            font-weight: 600;
+            display: block;
+        }
+
+        .rda-label .rda-benefit {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .rda-bar-wrapper {
+            position: relative;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 165, 165, 0.15);
+        }
+
+        .rda-bar-fill {
+            height: 100%;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .rda-bar-fill.bar-mag {
+            background: linear-gradient(90deg, var(--soft-sage), var(--sage));
+        }
+
+        .rda-bar-fill.bar-iron {
+            background: linear-gradient(90deg, var(--rose), var(--deep-rose));
+        }
+
+        .rda-bar-fill.bar-zinc {
+            background: linear-gradient(90deg, #D9B8A5, #C09070);
+        }
+
+        .rda-bar-fill.bar-b6 {
+            background: linear-gradient(90deg, var(--blush), var(--rose));
+        }
+
+        .rda-bar-fill.bar-d3 {
+            background: linear-gradient(90deg, var(--gold), #B08940);
+        }
+
+        .rda-bar-fill.bar-omega {
+            background: linear-gradient(90deg, #B8C9D9, #8AA0B8);
+        }
+
+        .rda-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--plum);
+            text-align: left;
+        }
+
+        .rda-value small {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .nutrient-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nutrient-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nutrient-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .rda-item {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+            }
+
+            .rda-label {
+                text-align: left;
+            }
+
+            .rda-value {
+                text-align: right;
+                margin-top: -2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -29,48 +322,280 @@
 <header class="page-hero">
     <span class="section-icon">&#128138;</span>
     <h1>Vitamíny &amp; minerály</h1>
-    <p>Stavební kameny ženského zdraví. Někdy ani ta nejlepší strava nepokryje vše, co moderní žena potřebuje.</p>
+    <p>Mikronutrienty, které tvoje tělo skutečně potřebuje. Naše hormony potřebují ke správnému fungování specifické palivo &mdash; půjdeme na to chytře.</p>
 </header>
 
-<section class="content-section">
-    <div class="container">
-        <div class="vitamins-grid">
-            <div class="vitamin-card fade-in">
-                <div class="vitamin-icon">&#10024;</div>
-                <h3>Hořčík (Magnesium)</h3>
-                <p class="vitamin-benefit">Král ženského wellness</p>
-                <p>Pomáhá snižovat stres, zlepšuje spánek, zmírňuje PMS a menstruační křeče. Hledej formy jako bisglycinát pro zklidnění nebo malát pro energii.</p>
-                <div class="sources">Dýňová semínka &bull; špenát &bull; hořká čokoláda &bull; kvalitní doplňky stravy</div>
-            </div>
-
-            <div class="vitamin-card fade-in">
-                <div class="vitamin-icon">&#9889;</div>
-                <h3>B-komplex</h3>
-                <p class="vitamin-benefit">Energie a nervová soustava</p>
-                <p>Esenciální pro naši energii, nervovou soustavu a metabolismus estrogenu. Základ hormonální rovnováhy.</p>
-                <div class="sources">Vejce &bull; luštěniny &bull; celozrnné obiloviny &bull; tmavá listová zelenina</div>
-            </div>
-
-            <div class="vitamin-card fade-in">
-                <div class="vitamin-icon">&#128167;</div>
-                <h3>Omega-3 mastné kyseliny</h3>
-                <p class="vitamin-benefit">Nejlepší bojovník proti zánětu</p>
-                <p>Zmírňuje bolesti při menstruaci a podporuje zdraví pleti i mozku. Nejlepší protizánětlivý pomocník v těle.</p>
-                <div class="sources">Losos &bull; sardinky &bull; lněná semínka &bull; chia semínka</div>
-            </div>
-
-            <div class="vitamin-card fade-in">
-                <div class="vitamin-icon">&#127793;</div>
-                <h3>Zinek</h3>
-                <p class="vitamin-benefit">Imunita a krásná pleť</p>
-                <p>Důležitý pro imunitu, zdravou pleť (bojuje proti hormonálnímu akné) a kvalitu našich vajíček.</p>
-                <div class="sources">Hovězí maso &bull; ústřice &bull; dýňová semínka</div>
+<!-- 1. HOŘČÍK -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon mag">&#10024;</div>
+            <div class="nutrient-header-text">
+                <h2>Hořčík (Magnesium)</h2>
+                <span class="nutrient-subtitle">Král ženského klidu &bull; RDA: 320 mg</span>
             </div>
         </div>
+        <p class="nutrient-body fade-in">Hořčík se spotřebovává, když jsme ve stresu &mdash; a buďme upřímné, moderní svět je na náš nervový systém náročný. Je to ultimátní &bdquo;chill pill&ldquo; z přírody. Uvolňuje svaly (ahoj, menstruační křeče!), zklidňuje nervovou soustavu a zlepšuje hloubku spánku.</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Dýňová semínka</li>
+                    <li>Špenát</li>
+                    <li>Hořká čokoláda</li>
+                    <li>Mandle</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Biohacking tip</h3>
+                <p>Pokud suplementuješ, vyhni se levnému oxidu (špatně se vstřebává). Na večerní zklidnění zvol <em>bisglycinát</em>, pro ranní energii <em>malát</em>.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- 2. VITAMÍN D3 -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon d3">&#9728;&#65039;</div>
+            <div class="nutrient-header-text">
+                <h2>Vitamín D3 (vždy s K2)</h2>
+                <span class="nutrient-subtitle">Slunce v kapkách &bull; RDA: 600&ndash;800 IU (15&ndash;20 &micro;g)</span>
+            </div>
+        </div>
+        <p class="nutrient-body fade-in">Tohle není jen vitamín, je to v podstatě pro-hormon. Receptory pro vitamín D má každá buňka v našem těle. Je naprosto zásadní pro naši imunitu, dobrou náladu (prevence zimních depresí) a hormonální rovnováhu.</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Ranní a polední slunce (přes kůži)</li>
+                    <li>Tučné ryby (losos, sardinky)</li>
+                    <li>Vaječné žloutky</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Biohacking tip</h3>
+                <p>Vitamín D vždy užívej společně s vitamínem K2. D3 zajistí, že se vápník vstřebá do krve, a K2 ho nasměruje přesně tam, kam patří &mdash; do kostí a zubů, místo do cév. V zimě mnozí odborníci doporučují dávky od 2000 IU výše podle krevních testů.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. ZINEK -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon zinc">&#127793;</div>
+            <div class="nutrient-header-text">
+                <h2>Zinek</h2>
+                <span class="nutrient-subtitle">Ochránce pleti a vaječníků &bull; RDA: 8 mg</span>
+            </div>
+        </div>
+        <p class="nutrient-body fade-in">Bojuješ s hormonálním akné před menstruací? Zinek je tvůj nejlepší přítel. Působí silně protizánětlivě, tlumí přebytečný testosteron u žen a je kriticky důležitý pro zdravý vývoj vajíčka a pravidelnou ovulaci.</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Ústřice (nejbohatší zdroj na světě!)</li>
+                    <li>Hovězí maso</li>
+                    <li>Konopná a dýňová semínka</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Klíčové benefity</h3>
+                <ul>
+                    <li>Silný protizánětlivý účinek</li>
+                    <li>Tlumí přebytečný testosteron</li>
+                    <li>Podporuje kvalitu vajíček</li>
+                    <li>Posiluje imunitu</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. ŽELEZO -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon iron">&#128167;</div>
+            <div class="nutrient-header-text">
+                <h2>Železo</h2>
+                <span class="nutrient-subtitle">Palivo pro tvou energii &bull; RDA: 18 mg</span>
+            </div>
+        </div>
+        <p class="nutrient-body fade-in">Během menstruační fáze naše tělo krvácí a s krví odchází i cenné železo. Pokud jsi neustále unavená, máš studené ruce a nohy nebo se ti točí hlava, zkontroluj si hladinu železa (ferritinu).</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Červené maso a játra</li>
+                    <li>Čočka a luštěniny</li>
+                    <li>Tmavá listová zelenina</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Biohacking tip</h3>
+                <p>Rostlinné železo (nehemové) se vstřebává mnohem hůře než to živočišné. Pokud jíš špenát nebo čočku, vždy přidej zdroj vitamínu C (kapku citronu), který vstřebatelnost výrazně zvýší!</p>
+                <div class="biohack-tip"><strong>Pozn.:</strong> Po menopauze potřeba klesá na 8 mg denně.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. VITAMÍN B6 -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon b6">&#9889;</div>
+            <div class="nutrient-header-text">
+                <h2>Vitamín B6 &amp; B-Komplex</h2>
+                <span class="nutrient-subtitle">Estrogenový detox &bull; RDA (B6): 1,3 mg</span>
+            </div>
+        </div>
+        <p class="nutrient-body fade-in">Vitamíny skupiny B jsou jako malé dělnice ve tvých játrech. Pomáhají zpracovávat a odvádět z těla použitý estrogen. Pokud se estrogen v těle hromadí (estrogenová dominance), zažíváme těžký PMS, bolavá prsa a náladovost.</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Cizrna a luštěniny</li>
+                    <li>Losos a drůbež</li>
+                    <li>Banány</li>
+                    <li>Ovesné vločky</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Klíčové benefity</h3>
+                <ul>
+                    <li>Metabolismus estrogenu v játrech</li>
+                    <li>Prevence estrogenové dominance</li>
+                    <li>Podpora nervové soustavy</li>
+                    <li>Stabilizace nálady a energie</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. OMEGA-3 -->
+<section class="nutrient-section">
+    <div class="nutrient-container">
+        <div class="nutrient-header fade-in">
+            <div class="nutrient-header-icon omega">&#129483;</div>
+            <div class="nutrient-header-text">
+                <h2>Omega-3 mastné kyseliny</h2>
+                <span class="nutrient-subtitle">Tekuté zlato proti zánětu &bull; RDA: 250&ndash;500 mg (EPA+DHA)</span>
+            </div>
+        </div>
+        <p class="nutrient-body fade-in">Pomáhají tlumit produkci prostaglandinů &mdash; látek, které způsobují zánět a bolestivé děložní stahy během menstruace. Navíc jsou klíčové pro náš mozek a soustředění.</p>
+        <div class="nutrient-info-grid">
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#127807;</span> Nejlepší zdroje</h3>
+                <ul>
+                    <li>Divoký losos</li>
+                    <li>Sardinky a makrela</li>
+                    <li>Chia semínka</li>
+                    <li>Vlašské ořechy</li>
+                </ul>
+            </div>
+            <div class="nutrient-info-card fade-in">
+                <h3><span>&#128161;</span> Klíčové benefity</h3>
+                <ul>
+                    <li>Zmírnění menstruačních bolestí</li>
+                    <li>Podpora zdraví mozku a soustředění</li>
+                    <li>Protizánětlivý účinek v celém těle</li>
+                    <li>Zdravá a zářivá pleť</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RDA VIZUALIZACE -->
+<section class="rda-section">
+    <div class="rda-container">
+        <div class="rda-header fade-in">
+            <h2>Doporučený denní příjem</h2>
+            <p>Přehled RDA pro ženy v reprodukčním věku &mdash; vizualizace relativních denních dávek</p>
+        </div>
+
+        <div class="rda-bars">
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Hořčík</span>
+                    <span class="rda-benefit">Zklidnění nervů, prevence křečí</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-mag" data-width="100%"></div>
+                </div>
+                <div class="rda-value">320 <small>mg</small></div>
+            </div>
+
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Omega-3</span>
+                    <span class="rda-benefit">Protizánětlivost, mozek</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-omega" data-width="78%"></div>
+                </div>
+                <div class="rda-value">250 <small>mg</small></div>
+            </div>
+
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Železo</span>
+                    <span class="rda-benefit">Doplnění po menstruaci, energie</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-iron" data-width="56%"></div>
+                </div>
+                <div class="rda-value">18 <small>mg</small></div>
+            </div>
+
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Vitamín D3</span>
+                    <span class="rda-benefit">Imunita, hormonální stabilita</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-d3" data-width="47%"></div>
+                </div>
+                <div class="rda-value">15 <small>&micro;g (600 IU)</small></div>
+            </div>
+
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Zinek</span>
+                    <span class="rda-benefit">Čistá pleť, podpora ovulace</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-zinc" data-width="25%"></div>
+                </div>
+                <div class="rda-value">8 <small>mg</small></div>
+            </div>
+
+            <div class="rda-item fade-in">
+                <div class="rda-label">
+                    <span class="rda-name">Vitamín B6</span>
+                    <span class="rda-benefit">Metabolismus estrogenu, nálada</span>
+                </div>
+                <div class="rda-bar-wrapper">
+                    <div class="rda-bar-fill bar-b6" data-width="12%"></div>
+                </div>
+                <div class="rda-value">1,3 <small>mg</small></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PAMATUJ -->
+<section class="content-section">
+    <div class="container">
         <div class="supplement-note fade-in">
             <span class="note-label">Pamatuj</span>
-            <p>Suplementy by měly vždy jen &bdquo;doplňovat&ldquo; to, co už máme nastavené v našem životním stylu a stravě. Nejdříve základ, pak doplňky.</p>
+            <p>Žádný suplement nedokáže přebít špatnou stravu a nedostatek spánku. Tyto živiny ber jako třešničku na dortu tvého zdravého životního stylu, ne jako jeho náhradu. Pokud si nejsi jistá, co tvé tělo potřebuje, nechej si udělat krevní testy.</p>
         </div>
     </div>
 </section>
@@ -87,9 +612,22 @@
     const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
     navLinks.querySelectorAll('a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('open')));
+
     const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                // Animate RDA bars
+                const bar = e.target.querySelector('.rda-bar-fill');
+                if (bar) {
+                    setTimeout(() => {
+                        bar.style.width = bar.dataset.width;
+                    }, 200);
+                }
+            }
+        });
     }, { threshold: 0.1 });
+
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
